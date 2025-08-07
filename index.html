@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GD Topics Generator</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #74ebd5, #acb6e5);
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    header {
+      background-color: #2c3e50;
+      color: white;
+      padding: 20px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 36px;
+    }
+
+    main {
+      padding: 40px 20px;
+    }
+
+    select, button {
+      padding: 12px 20px;
+      font-size: 18px;
+      margin: 10px;
+      border-radius: 8px;
+      border: none;
+    }
+
+    select {
+      background-color: #f1f1f1;
+    }
+
+    button {
+      background-color: #2980b9;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #1c5984;
+    }
+
+    #topicDisplay {
+      margin-top: 40px;
+      font-size: 24px;
+      font-weight: bold;
+      color: #2d3436;
+      background: white;
+      display: inline-block;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 600px;
+    }
+
+    footer {
+      margin-top: 60px;
+      background-color: #2c3e50;
+      color: white;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>GD Topics Generator</h1>
+  <p>Click to get a topic and start preparing!</p>
+</header>
+
+<main>
+  <label for="category">Choose a Category:</label>
+  <select id="category">
+    <option value="all">All</option>
+    <option value="current">Current Affairs</option>
+    <option value="tech">Technology</option>
+    <option value="social">Social Issues</option>
+    <option value="education">Education</option>
+    <option value="abstract">Abstract</option>
+    <option value="business">Business & Economy</option>
+  </select>
+
+  <button onclick="generateTopic()">Generate Topic</button>
+
+  <div id="topicDisplay">Your topic will appear here...</div>
+</main>
+
+<footer>
+  <p>&copy; 2025 GD Topics Generator | Created by YOU</p>
+</footer>
+
+<script>
+  const topics = [
+    { category: "current", text: "India’s Role in Global Politics" },
+    { category: "current", text: "Is Uniform Civil Code Needed in India?" },
+    { category: "tech", text: "Artificial Intelligence – Boon or Bane?" },
+    { category: "tech", text: "Is Data the New Oil?" },
+    { category: "social", text: "Impact of Social Media on Teenagers" },
+    { category: "social", text: "Should Smoking Be Banned in Public Places?" },
+    { category: "education", text: "Online vs Offline Education" },
+    { category: "education", text: "Is Indian Education System Job-Ready?" },
+    { category: "abstract", text: "Red or Blue – Which Color Are You?" },
+    { category: "abstract", text: "Silence Speaks Louder Than Words" },
+    { category: "business", text: "Is Cryptocurrency the Future of Finance?" },
+    { category: "business", text: "Startups in India – Success or Hype?" },
+  ];
+
+  function generateTopic() {
+    const selectedCategory = document.getElementById("category").value;
+    let filteredTopics = [];
+
+    if (selectedCategory === "all") {
+      filteredTopics = topics;
+    } else {
+      filteredTopics = topics.filter(t => t.category === selectedCategory);
+    }
+
+    if (filteredTopics.length === 0) {
+      document.getElementById("topicDisplay").innerText = "No topics found in this category.";
+      return;
+    }
+
+    const randomIndex = Math.floor(Math.random() * filteredTopics.length);
+    document.getElementById("topicDisplay").innerText = filteredTopics[randomIndex].text;
+  }
+</script>
+
+</body>
+</html>
